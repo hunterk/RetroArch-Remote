@@ -1,0 +1,18 @@
+<!-- index.html -->
+<label for="ipAddressInput">RetroArch Host IP Address:</label>
+<input type="text" id="ipAddressInput" value="localhost">
+<button onclick="sendCommand()">Set target IP!</button>
+
+<script>
+    const { ipcRenderer } = require('electron');
+
+    function sendCommand() {
+        const ipAddress = document.getElementById('ipAddressInput').value;
+        ipcRenderer.send('user-command', ipAddress);
+    }
+
+    function getUserInput() {
+        return document.getElementById('ipAddressInput').value;
+    }
+</script>
+
